@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://bqa3u7b85nqgk"
+path="res://.godot/imported/arrow.aseprite-c4603aad0565f0a1dc105b9426f882fb.res"
+
+[deps]
+
+source_file="res://assets/Weapons/arrow.aseprite"
+dest_files=["res://.godot/imported/arrow.aseprite-c4603aad0565f0a1dc105b9426f882fb.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

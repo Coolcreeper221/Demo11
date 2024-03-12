@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0l0ry3xaanxo"]
+
+[ext_resource type="Script" path="res://Scenes/hud.gd" id="1_8juik"]
+[ext_resource type="Texture2D" uid="uid://dm37sws2kle28" path="res://assets/icons/sheet (1).png" id="1_x206v"]
+[ext_resource type="Texture2D" uid="uid://bbx5vfqqcgu1f" path="res://assets/cards/squareCircle_vector.png" id="2_0rrsh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys7f5"]
+atlas = ExtResource("2_0rrsh")
+region = Rect2(82, 1, 16, 16)
+
+[node name="HUD" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8juik")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -36.0
+offset_right = -12.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -2.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ys7f5")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Items" type="HBoxContainer" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="1" type="Control" parent="CanvasLayer/Control/Items"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Sprite" type="Sprite2D" parent="CanvasLayer/Control/Items/1"]
+texture = ExtResource("1_x206v")
+centered = false
+hframes = 16
+vframes = 6
+frame = 43
+
+[node name="2" type="Control" parent="CanvasLayer/Control/Items"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Sprite2" type="Sprite2D" parent="CanvasLayer/Control/Items/2"]
+texture = ExtResource("1_x206v")
+centered = false
+hframes = 16
+vframes = 6
+
+[node name="3" type="Control" parent="CanvasLayer/Control/Items"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Sprite3" type="Sprite2D" parent="CanvasLayer/Control/Items/3"]
+texture = ExtResource("1_x206v")
+centered = false
+hframes = 16
+vframes = 6
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+offset_right = 53.0
+offset_bottom = 23.0
+text = "Bullets"

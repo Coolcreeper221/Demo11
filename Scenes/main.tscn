@@ -1,0 +1,273 @@
+[gd_scene load_steps=15 format=3 uid="uid://vlowwug5e2ow"]
+
+[ext_resource type="PackedScene" uid="uid://d2ah7st655mjm" path="res://Scenes/mapgen.tscn" id="1_urdiq"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_onn4s"]
+[ext_resource type="Texture2D" uid="uid://cnk70kntykh0a" path="res://assets/Heroes/Rogue/Idle/Idle-Sheet.png" id="3_id5iy"]
+[ext_resource type="Texture2D" uid="uid://df1onv77c5tmv" path="res://assets/Heroes/Rogue/Run/Run-Sheet.png" id="4_phabn"]
+[ext_resource type="Script" path="res://Scripts/Circle.gd" id="5_cjipq"]
+[ext_resource type="Texture2D" uid="uid://i41ejav0ergc" path="res://assets/Weapons/arrow.png" id="6_o0mp0"]
+[ext_resource type="Script" path="res://Scripts/Spawner.gd" id="7_oj7eh"]
+[ext_resource type="PackedScene" uid="uid://px4oh6325d67" path="res://Scenes/bulletroot.tscn" id="8_uk5ul"]
+[ext_resource type="PackedScene" uid="uid://c0l0ry3xaanxo" path="res://Scenes/hud.tscn" id="10_72lbo"]
+
+[sub_resource type="Animation" id="Animation_020le"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_id5iy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u0hxn"]
+resource_name = "Run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_phabn")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_mkrd2"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_id5iy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5l621"]
+_data = {
+"RESET": SubResource("Animation_020le"),
+"Run": SubResource("Animation_u0hxn"),
+"idle": SubResource("Animation_mkrd2")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pudtg"]
+radius = 7.07107
+
+[node name="Main" type="Node2D"]
+
+[node name="Mapgen" parent="." instance=ExtResource("1_urdiq")]
+
+[node name="NavigationRegion2D" parent="Mapgen" index="0"]
+position = Vector2(0, 5)
+
+[node name="player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("spawner")]
+light_mask = 0
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("2_onn4s")
+spawner = NodePath("../Spawner")
+SPEED = 200.0
+cooldown = 0.5
+pattern = ExtResource("8_uk5ul")
+bspeed = 300.0
+player = true
+
+[node name="Body" type="Sprite2D" parent="player"]
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("3_id5iy")
+hframes = 4
+
+[node name="Mouse" type="Marker2D" parent="player"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
+libraries = {
+"": SubResource("AnimationLibrary_5l621")
+}
+
+[node name="Pivot" type="Marker2D" parent="player"]
+
+[node name="Circle" type="Node2D" parent="player/Pivot"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("5_cjipq")
+
+[node name="Arrow" type="Sprite2D" parent="player/Pivot"]
+position = Vector2(37, 0)
+texture = ExtResource("6_o0mp0")
+offset = Vector2(5, 0)
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 16)
+
+[node name="nozzle" type="Marker2D" parent="player/Pivot/Arrow"]
+position = Vector2(9, -0.5)
+
+[node name="Collider" type="CollisionShape2D" parent="player"]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_pudtg")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(0, -1)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("7_oj7eh")
+
+[node name="HUD" parent="." instance=ExtResource("10_72lbo")]
+custom_minimum_size = Vector2(640, 360)
+offset_right = 640.0
+offset_bottom = 360.0
+
+[editable path="Mapgen"]

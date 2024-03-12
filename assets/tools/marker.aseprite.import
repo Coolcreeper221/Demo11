@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://cwb0rhfymk1mn"
+path="res://.godot/imported/marker.aseprite-157f95c620cf413c81c581d4c627b6e1.res"
+
+[deps]
+
+source_file="res://assets/tools/marker.aseprite"
+dest_files=["res://.godot/imported/marker.aseprite-157f95c620cf413c81c581d4c627b6e1.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

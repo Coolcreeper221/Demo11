@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1dvulxfcxoga"]
+
+[ext_resource type="TileSet" uid="uid://bvn1gwbdsd7pm" path="res://main.tres" id="1_f01o1"]
+[ext_resource type="Script" path="res://Scenes/rooms/baseroom.gd" id="2_5s3q3"]
+[ext_resource type="Script" path="res://Resources/position2d.gd" id="3_miugn"]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D"]
+script = ExtResource("2_5s3q3")
+
+[node name="entrance" type="Node2D" parent="."]
+script = ExtResource("3_miugn")
+
+[node name="exit" type="Node2D" parent="."]
+script = ExtResource("3_miugn")
+
+[node name="Baseroom" type="TileMap" parent="."]
+tile_set = ExtResource("1_f01o1")
+format = 2

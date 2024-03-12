@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ah7st655mjm"]
+
+[ext_resource type="Script" path="res://Scripts/mapgen.gd" id="1_ftkfn"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ba7p1"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(-26124, -19094, 29044, -16534, 47860, 21610, -14988, 23658)])
+parsed_collision_mask = 4294967291
+source_geometry_mode = 2
+source_geometry_group_name = &"navigation"
+agent_radius = 15.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hqcn1"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(-26124, -19094, 29044, -16534, 47860, 21610, -14988, 23658)])
+source_geometry_mode = 2
+source_geometry_group_name = &"navigation"
+agent_radius = 5.0
+
+[node name="Mapgen" type="Node2D"]
+script = ExtResource("1_ftkfn")
+roomdirectories = PackedStringArray("res://Scenes/rooms/spawn", "res://Scenes/rooms/shop", "res://Scenes/rooms/mob", "res://Scenes/rooms/hall", "res://Scenes/rooms/exit", "res://Scenes/rooms/boss")
+roomorder = PackedStringArray("spawn", "mob", "mob", "mob", "boss", "exit")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_ba7p1")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_hqcn1")
+use_edge_connections = false
+navigation_layers = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -128
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0784314, 0.0705882, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(57856, 34816)

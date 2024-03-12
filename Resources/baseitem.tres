@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="item" load_steps=2 format=3 uid="uid://cwehl2828lgeq"]
+
+[ext_resource type="Script" path="res://Resources/baseitem.gd" id="1_bp0vm"]
+
+[resource]
+script = ExtResource("1_bp0vm")
+Name = ""
+Speed_Multiplier = 0.0
+Number_Of_Bounces = 0
+Curve_Looping = false
+Homing = false
+types = PackedStringArray()
+Exclude_type = PackedStringArray()
+sprite_index = 0
