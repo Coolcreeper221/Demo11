@@ -5,16 +5,21 @@ extends Node2D
 var rooms:Array
 var placepos:Vector2=Vector2.ZERO
 var placeangle:float=45
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
+
 	randomize()
 	for i in roomdirectories:
-		var rname = i.erase(0,19)
-		
+		var rname
+		if i.contains("res://"):
+			rname = i.erase(0,19)
+		else:
+			rname = i.erase(0,12)
 		var modules = dir_contents(i)
+		
 		if modules:
 			rooms.append({"type":rname,"modules":modules})
-	
+	print(rooms)
 	for i in roomorder:
 		var modules
 		for j in rooms:

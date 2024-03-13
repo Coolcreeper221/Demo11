@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vlowwug5e2ow"]
+[gd_scene load_steps=23 format=3 uid="uid://vlowwug5e2ow"]
 
 [ext_resource type="PackedScene" uid="uid://d2ah7st655mjm" path="res://Scenes/mapgen.tscn" id="1_urdiq"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_onn4s"]
@@ -7,8 +7,12 @@
 [ext_resource type="Script" path="res://Scripts/Circle.gd" id="5_cjipq"]
 [ext_resource type="Texture2D" uid="uid://i41ejav0ergc" path="res://assets/Weapons/arrow.png" id="6_o0mp0"]
 [ext_resource type="Script" path="res://Scripts/Spawner.gd" id="7_oj7eh"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="8_kn1ks"]
 [ext_resource type="PackedScene" uid="uid://px4oh6325d67" path="res://Scenes/bulletroot.tscn" id="8_uk5ul"]
 [ext_resource type="PackedScene" uid="uid://c0l0ry3xaanxo" path="res://Scenes/hud.tscn" id="10_72lbo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_plhk3"]
+light_mode = 1
 
 [sub_resource type="Animation" id="Animation_020le"]
 length = 0.001
@@ -191,22 +195,82 @@ tracks/4/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_mh5ah"]
+resource_name = "death"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5l621"]
 _data = {
 "RESET": SubResource("Animation_020le"),
 "Run": SubResource("Animation_u0hxn"),
+"death": SubResource("Animation_mh5ah"),
 "idle": SubResource("Animation_mkrd2")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pudtg"]
 radius = 7.07107
 
+[sub_resource type="Animation" id="Animation_sr5ex"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1psr3"]
+resource_name = "modulate"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qwmai"]
+_data = {
+"RESET": SubResource("Animation_sr5ex"),
+"modulate": SubResource("Animation_1psr3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wk0oo"]
+radius = 11.0454
+
+[sub_resource type="Environment" id="Environment_2mkdm"]
+background_mode = 3
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+glow_enabled = true
+glow_normalized = true
+glow_strength = 1.04
+glow_bloom = 0.6
+glow_blend_mode = 0
+
 [node name="Main" type="Node2D"]
 
 [node name="Mapgen" parent="." instance=ExtResource("1_urdiq")]
+z_index = -5
+roomdirectories = PackedStringArray("res://Scenes/rooms/spawn", "res://Scenes/rooms/shop", "res://Scenes/rooms/mob", "res://Scenes/rooms/hall", "res://Scenes/rooms/exit", "res://Scenes/rooms/boss", "user://mods/maps/boss", "user://mods/maps/exit", "user://mods/maps/hall", "user://mods/maps/mob", "user://mods/maps/shop", "user://mods/maps/spawn")
 
 [node name="NavigationRegion2D" parent="Mapgen" index="0"]
 position = Vector2(0, 5)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.113725, 0.113725, 0.113725, 1)
 
 [node name="player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("spawner")]
 light_mask = 0
@@ -218,9 +282,11 @@ SPEED = 200.0
 cooldown = 0.5
 pattern = ExtResource("8_uk5ul")
 bspeed = 300.0
+maxbounces = -1
 player = true
 
 [node name="Body" type="Sprite2D" parent="player"]
+material = SubResource("CanvasItemMaterial_plhk3")
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("3_id5iy")
@@ -262,6 +328,25 @@ drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 
+[node name="hitbox" type="Area2D" parent="player"]
+position = Vector2(-1, -17)
+collision_layer = 16
+collision_mask = 128
+script = ExtResource("8_kn1ks")
+health = 2
+player = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player/hitbox"]
+process_mode = 3
+root_node = NodePath("../../Body")
+libraries = {
+"": SubResource("AnimationLibrary_qwmai")
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="player/hitbox"]
+position = Vector2(1, 17)
+shape = SubResource("CircleShape2D_wk0oo")
+
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("7_oj7eh")
 
@@ -269,5 +354,10 @@ script = ExtResource("7_oj7eh")
 custom_minimum_size = Vector2(640, 360)
 offset_right = 640.0
 offset_bottom = 360.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2mkdm")
+
+[connection signal="body_entered" from="player/hitbox" to="player/hitbox" method="_on_body_entered"]
 
 [editable path="Mapgen"]

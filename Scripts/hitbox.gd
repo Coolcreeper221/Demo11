@@ -1,11 +1,15 @@
 extends Area2D
 
 @export var health = 1
-
+@export var player = false
 
 
 func _on_body_entered(body):
-	if body.name.contains("Bullet"):
+	if player and (body.name.contains("Bullet") or body.name.contains("melee")) and !body.player:
+		health-=1
+		body.queue_free()
+		_hit()
+	elif body.name.contains("Bullet"):
 		health-=1
 		body.queue_free()
 		_hit()
