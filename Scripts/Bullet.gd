@@ -41,6 +41,8 @@ func _ready() -> void:
 		timer.start()
 		if target:
 			$Area2D.queue_free()
+	else:
+		$Area2D.queue_free()
 func _update_path() -> void:
 	if is_instance_valid(target):
 		agent.target_position = target.global_position

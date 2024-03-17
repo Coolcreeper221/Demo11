@@ -130,6 +130,9 @@ tracks/3/keys = {
 "values": [Vector2(0, -16)]
 }
 
+[sub_resource type="Animation" id="Animation_mh5ah"]
+resource_name = "death"
+
 [sub_resource type="Animation" id="Animation_mkrd2"]
 resource_name = "idle"
 length = 0.4
@@ -194,9 +197,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_mh5ah"]
-resource_name = "death"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5l621"]
 _data = {
@@ -358,6 +358,7 @@ offset_bottom = 360.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2mkdm")
 
+[connection signal="area_entered" from="player/hitbox" to="player/hitbox" method="_on_area_entered"]
 [connection signal="body_entered" from="player/hitbox" to="player/hitbox" method="_on_body_entered"]
 
 [editable path="Mapgen"]

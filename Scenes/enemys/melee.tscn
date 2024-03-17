@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dvuvsiwr4enlp"]
+[gd_scene load_steps=20 format=3 uid="uid://dvuvsiwr4enlp"]
 
 [ext_resource type="Script" path="res://Scripts/melee.gd" id="1_kdt8j"]
 [ext_resource type="Texture2D" uid="uid://cjnpuwh0lugtq" path="res://assets/Enemy/Skeleton Crew/Skeleton - Warrior/Run/Run-Sheet.png" id="2_016gy"]
 [ext_resource type="Texture2D" uid="uid://cxe6qddxbj2n8" path="res://assets/Enemy/Skeleton Crew/Skeleton - Warrior/Idle/Idle-Sheet.png" id="2_yhdph"]
 [ext_resource type="FontFile" uid="uid://n5p6xfdv0vkc" path="res://assets/fibberish.ttf" id="3_h6xvj"]
+[ext_resource type="Script" path="res://Scripts/attackbox.gd" id="4_5eo61"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_t0rwe"]
 [ext_resource type="Texture2D" uid="uid://p5nb6fyrlt1x" path="res://assets/Enemy/Skeleton Crew/Skeleton - Warrior/Death/Death-Sheet.png" id="6_a4a1b"]
 
@@ -11,6 +12,8 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ju0db"]
 light_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nkd6k"]
 
 [sub_resource type="Animation" id="Animation_sr5ex"]
 length = 0.001
@@ -320,8 +323,16 @@ autostart = true
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(0, 4)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="attack" type="Area2D" parent="."]
 position = Vector2(0, 4)
+collision_layer = 128
+collision_mask = 16
+monitoring = false
+script = ExtResource("4_5eo61")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+position = Vector2(22, -4)
+shape = SubResource("CircleShape2D_nkd6k")
 
 [node name="hitbox" type="Area2D" parent="."]
 position = Vector2(-1, -17)

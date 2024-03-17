@@ -2,16 +2,34 @@ extends Area2D
 
 @export var health = 1
 @export var player = false
-
-
-func _on_body_entered(body):
-	if player and (body.name.contains("Bullet") or body.name.contains("melee")) and !body.player:
+func _on_area_entered(body):
+	if player and !body.player:
 		health-=1
-		body.queue_free()
+		if body.name.contains("Bullet"):
+			body.queue_free()
 		_hit()
-	elif body.name.contains("Bullet"):
+	
+	elif body.name.contains("Bullet") and  get_parent().name.contains("melee"):
 		health-=1
-		body.queue_free()
+		if body.name.contains("Bullet"):
+			body.queue_free()
+		_hit()
+	if health <0:
+		$"..".call_deferred("set_process_mode",Node.PROCESS_MODE_DISABLED)
+		$"../AnimationPlayer".play("death")
+		await $"../AnimationPlayer".animation_finished 
+		$"..".queue_free()
+func _on_body_entered(body):
+	if player and !body.player:
+		health-=1
+		if body.name.contains("Bullet"):
+			body.queue_free()
+		_hit()
+	
+	elif body.name.contains("Bullet") and  get_parent().name.contains("melee"):
+		health-=1
+		if body.name.contains("Bullet"):
+			body.queue_free()
 		_hit()
 	if health <0:
 		$"..".call_deferred("set_process_mode",Node.PROCESS_MODE_DISABLED)

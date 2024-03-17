@@ -13,7 +13,8 @@ func _update_path() -> void:
 		agent.target_position = target.global_position
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	if !is_instance_valid(Global.player):
+		return
 	if !target:
 		target = Global.player
 		_update_path()
@@ -30,7 +31,8 @@ func _process(delta):
 		$Sprite2D.flip_h = velocity.x <0
 		$AnimationPlayer.play("run")
 	
-	
+	$attack.look_at(Global.player.position)
+
 
 
 func _on_visible_on_screen_enabler_2d_screen_entered():
