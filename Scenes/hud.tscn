@@ -1,12 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0l0ry3xaanxo"]
+[gd_scene load_steps=8 format=3 uid="uid://c0l0ry3xaanxo"]
 
 [ext_resource type="Script" path="res://Scenes/hud.gd" id="1_8juik"]
 [ext_resource type="Texture2D" uid="uid://dm37sws2kle28" path="res://assets/icons/sheet (1).png" id="1_x206v"]
 [ext_resource type="Texture2D" uid="uid://bbx5vfqqcgu1f" path="res://assets/cards/squareCircle_vector.png" id="2_0rrsh"]
+[ext_resource type="Texture2D" uid="uid://ctrm0a4wvfvtd" path="res://assets/ui/health.png" id="4_uubgj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ys7f5"]
 atlas = ExtResource("2_0rrsh")
 region = Rect2(82, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffxg2"]
+atlas = ExtResource("4_uubgj")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inhtn"]
+atlas = ExtResource("4_uubgj")
+region = Rect2(0, 16, 48, 16)
 
 [node name="HUD" type="Control"]
 top_level = true
@@ -98,10 +107,21 @@ hframes = 16
 vframes = 6
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-visible = false
 offset_right = 53.0
 offset_bottom = 23.0
 text = "Bullets"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 6.0
+offset_top = 23.0
+offset_right = 54.0
+offset_bottom = 39.0
+value = 48.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_ffxg2")
+texture_progress = SubResource("AtlasTexture_inhtn")
+radial_initial_angle = 270.0
+radial_center_offset = Vector2(24, 8)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = -64
