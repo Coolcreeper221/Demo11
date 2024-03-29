@@ -215,7 +215,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_efaxf"]
 resource_name = "run"
 length = 0.6
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -287,10 +286,12 @@ shape = SubResource("CircleShape2D_r7ar6")
 position = Vector2(4, 15)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("CanvasItemMaterial_ju0db")
 position = Vector2(-1, -17)
 texture = ExtResource("2_yhdph")
 centered = false
+flip_h = true
 hframes = 6
 
 [node name="Label" type="Label" parent="."]
@@ -321,13 +322,13 @@ wait_time = 0.2
 autostart = true
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(3.57628e-07, 0.499999)
+scale = Vector2(1.5, 1.75)
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2(0, 4)
 collision_layer = 128
 collision_mask = 16
-monitoring = false
 script = ExtResource("4_5eo61")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
@@ -352,10 +353,11 @@ position = Vector2(1, 17)
 shape = SubResource("CircleShape2D_7mwht")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-process_mode = 1
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_ga48d")
 }
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
 [connection signal="body_entered" from="hitbox" to="hitbox" method="_on_body_entered"]

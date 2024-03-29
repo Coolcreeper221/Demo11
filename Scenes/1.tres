@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ixfoncr8vhwk" path="res://assets/Environment/Dungeon Prison/Assets/Props.png" id="2_y21a6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wn46f"]
+resource_name = "0"
 texture = ExtResource("1_antoj")
 0:0/0 = 0
 0:0/0/y_sort_origin = 7
@@ -2038,6 +2039,7 @@ texture = ExtResource("1_antoj")
 11:10/0/terrains_peering_bit/top_right_corner = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yx6xq"]
+resource_name = "1"
 texture = ExtResource("2_y21a6")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)

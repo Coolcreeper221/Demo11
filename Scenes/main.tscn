@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://vlowwug5e2ow"]
+[gd_scene load_steps=25 format=3 uid="uid://vlowwug5e2ow"]
 
 [ext_resource type="PackedScene" uid="uid://d2ah7st655mjm" path="res://Scenes/mapgen.tscn" id="1_urdiq"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_onn4s"]
@@ -206,6 +206,14 @@ _data = {
 "idle": SubResource("Animation_mkrd2")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4kd2"]
+atlas = ExtResource("6_o0mp0")
+region = Rect2(6, 6, 5, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j3qj"]
+atlas = ExtResource("6_o0mp0")
+region = Rect2(11, -1, 5, 10)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_pudtg"]
 radius = 7.07107
 
@@ -279,7 +287,7 @@ collision_mask = 5
 script = ExtResource("2_onn4s")
 spawner = NodePath("../Spawner")
 SPEED = 200.0
-cooldown = 0.5
+cooldown = 0.25
 pattern = ExtResource("8_uk5ul")
 bspeed = 300.0
 maxbounces = -1
@@ -301,19 +309,25 @@ libraries = {
 
 [node name="Pivot" type="Marker2D" parent="player"]
 
+[node name="Arrow" type="TextureProgressBar" parent="player/Pivot"]
+modulate = Color(8, 8, 8, 1)
+texture_filter = 1
+offset_left = 40.0
+offset_top = -6.0
+offset_right = 48.0
+offset_bottom = 10.0
+max_value = 5.0
+fill_mode = 7
+texture_under = SubResource("AtlasTexture_p4kd2")
+texture_progress = SubResource("AtlasTexture_0j3qj")
+radial_initial_angle = 90.0
+
+[node name="nozzle" type="Marker2D" parent="player/Pivot/Arrow"]
+position = Vector2(5, 6)
+
 [node name="Circle" type="Node2D" parent="player/Pivot"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("5_cjipq")
-
-[node name="Arrow" type="Sprite2D" parent="player/Pivot"]
-position = Vector2(37, 0)
-texture = ExtResource("6_o0mp0")
-offset = Vector2(5, 0)
-region_enabled = true
-region_rect = Rect2(8, 0, 8, 16)
-
-[node name="nozzle" type="Marker2D" parent="player/Pivot/Arrow"]
-position = Vector2(9, -0.5)
 
 [node name="Collider" type="CollisionShape2D" parent="player"]
 position = Vector2(0, 9)

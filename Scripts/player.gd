@@ -18,11 +18,16 @@ var timer = 0.0
 @export var homing:bool
 @export var player:bool
 @export var target:Node2D
+@export_category("Health")
+@export var maxhealth:int = 8
+@export var health = maxhealth
+
 func _ready():
 	Global.player = self
+	$hitbox.health = maxhealth
 func _physics_process(delta):
-	
-	var inp_direction = Vector2(Input.get_axis("ui_left", "ui_right"),Input.get_axis("ui_up","ui_down")).normalized()
+	health = $hitbox.health
+	var inp_direction = Vector2(Input.get_axis("left", "right"),Input.get_axis("up","down")).normalized()
 
 	if inp_direction:
 		velocity= inp_direction*(SPEED+ delta*SPEED)
@@ -50,12 +55,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("click") and timer>= cooldown:
 		spawner.spawn($Pivot/Arrow/nozzle,{"speed":bspeed,"bounces":maxbounces,"curve":curve,"curveloop":curveloop,"homing":homing,"target":target,"player":player},pattern)
 		timer = 0
+		Global.shake += .05
 	
 	
 	
 	
 	pre_pos = position
-	$Mouse.global_position = (get_global_mouse_position()-position).normalized()*40+global_position
+	$Mouse.global_position = (get_global_mouse_position()-position).normalized()*4+global_position
 	$Pivot/Circle.charge = clamp(timer/cooldown,0,1)
 	$Pivot/Circle.queue_redraw()
 	move_and_slide()

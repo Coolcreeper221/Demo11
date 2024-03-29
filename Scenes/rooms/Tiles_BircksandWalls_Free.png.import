@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i41ejav0ergc"
-path="res://.godot/imported/arrow.png-16d5c0d00fd702109a1df4b362bba994.ctex"
+uid="uid://btreysvguis4m"
+path="res://.godot/imported/Tiles_BircksandWalls_Free.png-5d1059a74916efec8db416c6dac2ed90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Weapons/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-16d5c0d00fd702109a1df4b362bba994.ctex"]
+source_file="res://Scenes/rooms/Tiles_BircksandWalls_Free.png"
+dest_files=["res://.godot/imported/Tiles_BircksandWalls_Free.png-5d1059a74916efec8db416c6dac2ed90.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

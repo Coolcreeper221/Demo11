@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i41ejav0ergc"
-path="res://.godot/imported/arrow.png-16d5c0d00fd702109a1df4b362bba994.ctex"
+uid="uid://dttlvykvwnaj"
+path="res://.godot/imported/indicator.png-7a118de66de99b2fbc9b1770c45c8d69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Weapons/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-16d5c0d00fd702109a1df4b362bba994.ctex"]
+source_file="res://assets/ui/indicator.png"
+dest_files=["res://.godot/imported/indicator.png-7a118de66de99b2fbc9b1770c45c8d69.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

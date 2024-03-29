@@ -1,21 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0l0ry3xaanxo"]
+[gd_scene load_steps=11 format=3 uid="uid://c0l0ry3xaanxo"]
 
 [ext_resource type="Script" path="res://Scenes/hud.gd" id="1_8juik"]
 [ext_resource type="Texture2D" uid="uid://dm37sws2kle28" path="res://assets/icons/sheet (1).png" id="1_x206v"]
 [ext_resource type="Texture2D" uid="uid://bbx5vfqqcgu1f" path="res://assets/cards/squareCircle_vector.png" id="2_0rrsh"]
-[ext_resource type="Texture2D" uid="uid://ctrm0a4wvfvtd" path="res://assets/ui/health.png" id="4_uubgj"]
+[ext_resource type="Texture2D" uid="uid://dv3g5b6kvu0ny" path="res://assets/ui/GUISprite.png" id="4_dkkp1"]
+[ext_resource type="Script" path="res://Scripts/healthdisplay.gd" id="5_kxfs5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ys7f5"]
 atlas = ExtResource("2_0rrsh")
 region = Rect2(82, 1, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ffxg2"]
-atlas = ExtResource("4_uubgj")
-region = Rect2(0, 0, 48, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_04nei"]
+atlas = ExtResource("4_dkkp1")
+region = Rect2(80, 48, 64, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_inhtn"]
-atlas = ExtResource("4_uubgj")
-region = Rect2(0, 16, 48, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe5dl"]
+atlas = ExtResource("4_dkkp1")
+region = Rect2(94, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m3hw"]
+atlas = ExtResource("4_dkkp1")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybelr"]
+atlas = ExtResource("4_dkkp1")
+region = Rect2(16, 19, 16, 10)
 
 [node name="HUD" type="Control"]
 top_level = true
@@ -44,6 +53,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Control"]
+visible = false
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 1
 anchors_preset = 15
@@ -62,6 +72,7 @@ patch_margin_right = 2
 patch_margin_bottom = 2
 
 [node name="Items" type="HBoxContainer" parent="CanvasLayer/Control"]
+visible = false
 custom_minimum_size = Vector2(96, 32)
 layout_mode = 1
 anchors_preset = 3
@@ -107,21 +118,37 @@ hframes = 16
 vframes = 6
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 53.0
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
 offset_bottom = 23.0
+grow_horizontal = 0
 text = "Bullets"
+horizontal_alignment = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 6.0
-offset_top = 23.0
-offset_right = 54.0
-offset_bottom = 39.0
+[node name="health" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+max_value = 48.0
+step = 0.0
 value = 48.0
+texture_under = SubResource("AtlasTexture_04nei")
+texture_progress = SubResource("AtlasTexture_oe5dl")
+texture_progress_offset = Vector2(14, 0)
+script = ExtResource("5_kxfs5")
+
+[node name="health2" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 16.0
+offset_bottom = 16.0
+max_value = 10.0
+value = 10.0
 fill_mode = 3
-texture_under = SubResource("AtlasTexture_ffxg2")
-texture_progress = SubResource("AtlasTexture_inhtn")
-radial_initial_angle = 270.0
-radial_center_offset = Vector2(24, 8)
+texture_under = SubResource("AtlasTexture_4m3hw")
+texture_progress = SubResource("AtlasTexture_ybelr")
+texture_progress_offset = Vector2(0, 3)
+script = ExtResource("5_kxfs5")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = -64
