@@ -21,7 +21,7 @@ var timer = 0.0
 @export_category("Health")
 @export var maxhealth:int = 8
 @export var health = maxhealth
-
+var colliding = false
 func _ready():
 	Global.player = self
 	$hitbox.health = maxhealth
@@ -51,11 +51,20 @@ func _physics_process(delta):
 		
 	
 	timer += delta
-	
-	if Input.is_action_pressed("click") and timer>= cooldown:
+	var cols = $Pivot/RayCast2D.get_collision_count()
+	for i in cols:
+		if !$Pivot/RayCast2D.get_collider(i).name.contains("melee") and !$Pivot/RayCast2D.get_collider(i).name.contains("player"):
+			cols -= 1
+			
+	if cols < $Pivot/RayCast2D.get_collision_count():
+		colliding = true
+	else:
+		colliding = false
+	if Input.is_action_pressed("click") and timer>= cooldown and !colliding and Global.ammo > 0 and Engine.get_frames_per_second() > 30:
 		spawner.spawn($Pivot/Arrow/nozzle,{"speed":bspeed,"bounces":maxbounces,"curve":curve,"curveloop":curveloop,"homing":homing,"target":target,"player":player},pattern)
 		timer = 0
 		Global.shake += .05
+		Global.ammo -= 1
 	
 	
 	

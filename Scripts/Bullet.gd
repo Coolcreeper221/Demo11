@@ -12,6 +12,8 @@ var precurveangle:float = 0.0
 var agent:NavigationAgent2D
 var pre_pos:Vector2
 var player:bool
+@export var die_on_impact:bool 
+@export var die_offscreen:bool
 func _draw():
 	draw_texture(sprite, Vector2(-8,-8))
 
@@ -69,8 +71,8 @@ func _physics_process(_delta)-> void:
 		if target:
 			var dir = global_position.direction_to(agent.get_next_path_position())
 			if dir.length()>0.5:
-				velocity = velocity.move_toward(dir*speed,_delta*4*speed)
-			
+				velocity += (dir*speed)#*(_delta*8)
+				velocity = velocity.normalized()*speed
 		else:
 			@warning_ignore("unassigned_variable")
 			var possible_targets:Array
@@ -81,12 +83,8 @@ func _physics_process(_delta)-> void:
 					
 					elif !player:
 						possible_targets.append(i)
-			var minval = 180
-			var chosen:Node2D
-			for i in possible_targets:
-				if (global_position-i.global_position).length()<minval:
-					chosen = i
-			target = chosen
+			if possible_targets:
+				target = possible_targets.pick_random()
 	if pre_pos.distance_to(position) == 0:
 		queue_free()
 	else:
@@ -106,7 +104,11 @@ func _physics_process(_delta)-> void:
 	
 	
 	
-
+func _death():
+	if die_on_impact:
+		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
+	if die_offscreen:
+		queue_free()
+	pass

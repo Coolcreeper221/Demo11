@@ -6,13 +6,15 @@ func _on_area_entered(body):
 	if player and !body.player:
 		health-=1
 		if body.name.contains("Bullet"):
-			body.queue_free()
+			body._death()
+			pass
 		_hit()
 	
 	elif body.name.contains("Bullet") and  get_parent().is_in_group("enemy"):
 		health-=1
 		if body.name.contains("Bullet"):
-			body.queue_free()
+			body._death()
+			pass
 		_hit()
 	if health <0:
 		$"..".call_deferred("set_process_mode",Node.PROCESS_MODE_DISABLED)
@@ -24,13 +26,15 @@ func _on_body_entered(body):
 	if player and !body.player:
 		health-=1
 		if body.name.contains("Bullet"):
-			body.queue_free()
+			body._death()
+			pass
 		_hit()
 	
 	elif body.name.contains("Bullet") and  get_parent().is_in_group("enemy"):
 		health-=1
 		if body.name.contains("Bullet"):
-			body.queue_free()
+			body._death()
+			pass
 		_hit()
 	if health <0:
 		$"..".call_deferred("set_process_mode",Node.PROCESS_MODE_DISABLED)
@@ -38,6 +42,7 @@ func _on_body_entered(body):
 		$"../AnimationPlayer".play("death")
 		await $"../AnimationPlayer".animation_finished 
 		$"..".queue_free()
+		Global.ammo += 1
 	
 func _hit():
 	$AnimationPlayer.play("modulate")

@@ -19,7 +19,6 @@ func _ready():
 		
 		if modules:
 			rooms.append({"type":rname,"modules":modules})
-	print(rooms)
 	for i in roomorder:
 		var modules
 		for j in rooms:
