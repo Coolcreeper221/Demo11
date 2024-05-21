@@ -1,40 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0u3d1uur7sbi"]
+[gd_scene load_steps=7 format=3 uid="uid://c0u3d1uur7sbi"]
 
 [ext_resource type="Script" path="res://global.gd" id="1_it2pb"]
 [ext_resource type="Script" path="res://Resources/baseitem.gd" id="2_0i6it"]
+[ext_resource type="Texture2D" uid="uid://dm37sws2kle28" path="res://assets/icons/sheet (1).png" id="3_dkeiv"]
 
 [sub_resource type="Resource" id="Resource_xn8lb"]
 script = ExtResource("2_0i6it")
 Name = ""
-Speed_Multiplier = 0.0
-Number_Of_Bounces = 0
-Curve_Looping = false
-Homing = false
-types = PackedStringArray()
-Exclude_type = PackedStringArray()
-sprite_index = 1
+SPEED = 300.0
+cooldown = 1.0
+bspeed = 0.0
+maxbounces = 0
+curveloop = false
+homing = false
+maxhealth = 8
+health = null
+sprite_index = 0
+texture = ExtResource("3_dkeiv")
 
 [sub_resource type="Resource" id="Resource_io0r8"]
 script = ExtResource("2_0i6it")
 Name = ""
-Speed_Multiplier = 0.0
-Number_Of_Bounces = 0
-Curve_Looping = false
-Homing = false
-types = PackedStringArray()
-Exclude_type = PackedStringArray()
+SPEED = 300.0
+cooldown = 1.0
+bspeed = 0.0
+maxbounces = 0
+curveloop = false
+homing = false
+maxhealth = 8
+health = null
 sprite_index = 2
+texture = ExtResource("3_dkeiv")
 
 [sub_resource type="Resource" id="Resource_cnsrg"]
 script = ExtResource("2_0i6it")
 Name = ""
-Speed_Multiplier = 0.0
-Number_Of_Bounces = 0
-Curve_Looping = false
-Homing = false
-types = PackedStringArray()
-Exclude_type = PackedStringArray()
-sprite_index = 3
+SPEED = 300.0
+cooldown = 1.0
+bspeed = 0.0
+maxbounces = 0
+curveloop = false
+homing = false
+maxhealth = 8
+health = null
+sprite_index = 1
+texture = ExtResource("3_dkeiv")
 
 [node name="Global" type="Node2D"]
 script = ExtResource("1_it2pb")

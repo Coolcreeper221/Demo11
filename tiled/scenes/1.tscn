@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://h2u6q7gb0yes"]
 
-[ext_resource type="Texture2D" path="res://assets/Environment/Dungeon Prison/Assets/Tiles.png" id="tile"]
+[ext_resource type="Texture2D" uid="uid://cfua12sjv2yuu" path="res://assets/Environment/Dungeon Prison/Assets/Tiles.png" id="tile"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0"]
 texture = ExtResource("tile")
@@ -337,8 +337,6 @@ texture = ExtResource("tile")
 8:21/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_0"]
-tile_shape = 0
-tile_layout = 0
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0")
 

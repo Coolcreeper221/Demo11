@@ -2,12 +2,18 @@ extends Resource
 class_name item
 
 @export var Name:String
-@export var Custom_Pattern:PackedScene
-@export var Speed_Multiplier:float
-@export var Number_Of_Bounces:int
-@export var Curve_Shape:Curve
-@export var Curve_Looping:bool
-@export var Homing:bool
-@export var types:PackedStringArray
-@export var Exclude_type:PackedStringArray
-@export var sprite_index:int
+@export var SPEED = 0
+@export var cooldown = 0
+@export_category("Bullet Motion")
+@export var pattern:PackedScene
+@export var bspeed:float
+@export var maxbounces:int
+@export var curve:Curve
+@export var curveloop:bool
+@export_category("Bullet Homing")
+@export var homing:bool
+@export_category("Health")
+@export var maxhealth:int = 0
+@export var health = maxhealth
+@export var sprite_index = 0
+@export var texture:CompressedTexture2D
