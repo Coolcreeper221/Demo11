@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://caqe10d8mbl0p"]
+[gd_scene load_steps=5 format=3 uid="uid://caqe10d8mbl0p"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_5dt04"]
 [ext_resource type="Texture2D" uid="uid://cx0c26mnmd6n3" path="res://assets/Weapons/bullets.png" id="2_77cf5"]
@@ -6,13 +6,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aivlt"]
 size = Vector2(8, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gip01"]
+size = Vector2(2000, 2000)
+
 [node name="Bullet" type="CharacterBody2D"]
-modulate = Color(80, 10, 10, 1)
+modulate = Color(10, 5, 5, 1)
 collision_layer = 128
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_5dt04")
 sprite = ExtResource("2_77cf5")
+die_on_impact = true
+die_offscreen = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aivlt")
@@ -21,8 +26,8 @@ shape = SubResource("RectangleShape2D_aivlt")
 collision_layer = 0
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, 32, 0, -32, 192, -192, 192, 192)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gip01")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

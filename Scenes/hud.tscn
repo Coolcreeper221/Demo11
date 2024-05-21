@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0l0ry3xaanxo"]
+[gd_scene load_steps=14 format=3 uid="uid://c0l0ry3xaanxo"]
 
 [ext_resource type="Script" path="res://Scenes/hud.gd" id="1_8juik"]
 [ext_resource type="Texture2D" uid="uid://dm37sws2kle28" path="res://assets/icons/sheet (1).png" id="1_x206v"]
 [ext_resource type="Texture2D" uid="uid://bbx5vfqqcgu1f" path="res://assets/cards/squareCircle_vector.png" id="2_0rrsh"]
 [ext_resource type="Texture2D" uid="uid://dv3g5b6kvu0ny" path="res://assets/ui/GUISprite.png" id="4_dkkp1"]
 [ext_resource type="Script" path="res://Scripts/healthdisplay.gd" id="5_kxfs5"]
+[ext_resource type="FontFile" uid="uid://nh6mwnglq0b1" path="res://assets/Crang.ttf" id="6_37qb1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ys7f5"]
 atlas = ExtResource("2_0rrsh")
@@ -26,7 +27,13 @@ region = Rect2(64, 16, 16, 16)
 atlas = ExtResource("4_dkkp1")
 region = Rect2(16, 19, 16, 10)
 
+[sub_resource type="Theme" id="Theme_mas71"]
+default_font = ExtResource("6_37qb1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gwu6q"]
+
 [node name="HUD" type="Control"]
+process_mode = 3
 top_level = true
 layout_mode = 3
 anchors_preset = 15
@@ -36,9 +43,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8juik")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BAckground" type="CanvasLayer" parent="."]
+layer = -64
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="BAckground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -52,8 +70,7 @@ offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Control"]
-visible = false
+[node name="NinePatchRect" type="NinePatchRect" parent="HUD/Control"]
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 1
 anchors_preset = 15
@@ -71,8 +88,7 @@ patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
 
-[node name="Items" type="HBoxContainer" parent="CanvasLayer/Control"]
-visible = false
+[node name="Items" type="HBoxContainer" parent="HUD/Control"]
 custom_minimum_size = Vector2(96, 32)
 layout_mode = 1
 anchors_preset = 3
@@ -86,38 +102,38 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
 
-[node name="1" type="Control" parent="CanvasLayer/Control/Items"]
+[node name="1" type="Control" parent="HUD/Control/Items"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Sprite" type="Sprite2D" parent="CanvasLayer/Control/Items/1"]
+[node name="Sprite" type="Sprite2D" parent="HUD/Control/Items/1"]
 texture = ExtResource("1_x206v")
 centered = false
 hframes = 16
 vframes = 6
 frame = 43
 
-[node name="2" type="Control" parent="CanvasLayer/Control/Items"]
+[node name="2" type="Control" parent="HUD/Control/Items"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Sprite2" type="Sprite2D" parent="CanvasLayer/Control/Items/2"]
+[node name="Sprite2" type="Sprite2D" parent="HUD/Control/Items/2"]
 texture = ExtResource("1_x206v")
 centered = false
 hframes = 16
 vframes = 6
 
-[node name="3" type="Control" parent="CanvasLayer/Control/Items"]
+[node name="3" type="Control" parent="HUD/Control/Items"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Sprite3" type="Sprite2D" parent="CanvasLayer/Control/Items/3"]
+[node name="Sprite3" type="Sprite2D" parent="HUD/Control/Items/3"]
 texture = ExtResource("1_x206v")
 centered = false
 hframes = 16
 vframes = 6
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="HUD"]
 visible = false
 anchors_preset = 1
 anchor_left = 1.0
@@ -128,7 +144,7 @@ grow_horizontal = 0
 text = "Bullets"
 horizontal_alignment = 2
 
-[node name="health" type="TextureProgressBar" parent="CanvasLayer"]
+[node name="health" type="TextureProgressBar" parent="HUD"]
 offset_right = 40.0
 offset_bottom = 40.0
 max_value = 48.0
@@ -139,7 +155,7 @@ texture_progress = SubResource("AtlasTexture_oe5dl")
 texture_progress_offset = Vector2(14, 0)
 script = ExtResource("5_kxfs5")
 
-[node name="health2" type="TextureProgressBar" parent="CanvasLayer"]
+[node name="health2" type="TextureProgressBar" parent="HUD"]
 offset_right = 16.0
 offset_bottom = 16.0
 max_value = 10.0
@@ -150,13 +166,45 @@ texture_progress = SubResource("AtlasTexture_ybelr")
 texture_progress_offset = Vector2(0, 3)
 script = ExtResource("5_kxfs5")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = -64
+[node name="Death" type="CanvasLayer" parent="."]
+layer = 3
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+[node name="ColorRect" type="ColorRect" parent="Death"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Death"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Death/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Death/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.712692, 2.93598e-06, 5.77569e-07, 1)
+theme_override_fonts/font = ExtResource("6_37qb1")
+theme_override_font_sizes/font_size = 43
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Death/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_mas71")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gwu6q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gwu6q")
+toggle_mode = true
+action_mode = 0
+text = "Restart"
+
+[connection signal="pressed" from="Death/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
