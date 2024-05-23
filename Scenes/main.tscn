@@ -303,10 +303,9 @@ collision_mask = 5
 script = ExtResource("2_onn4s")
 spawner = NodePath("../Spawner")
 SPEED = 250.0
-cooldown = 0.1
+cooldown = 0.0
 pattern = ExtResource("8_uk5ul")
 bspeed = 300.0
-maxbounces = -1
 player = true
 
 [node name="Body" type="Sprite2D" parent="player"]
