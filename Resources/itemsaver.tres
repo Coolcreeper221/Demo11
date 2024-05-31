@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dvr413l3mkb71"]
+
+[ext_resource type="Script" path="res://Resources/itemsaver.gd" id="1_a7xky"]
+
+[resource]
+script = ExtResource("1_a7xky")
+items = Array[Resource]([null])

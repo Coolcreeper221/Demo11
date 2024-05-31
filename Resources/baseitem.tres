@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="item" load_steps=2 format=3 uid="uid://cwehl2828lgeq"]
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cwehl2828lgeq"]
 
 [ext_resource type="Script" path="res://Resources/baseitem.gd" id="1_bp0vm"]
 
 [resource]
 script = ExtResource("1_bp0vm")
 Name = ""
-SPEED = 300.0
-cooldown = 1.0
+SPEED = 1000
+cooldown = 0
 bspeed = 0.0
 maxbounces = 0
 curveloop = false
 homing = false
-maxhealth = 8
+maxhealth = 0
 health = null
 sprite_index = 0

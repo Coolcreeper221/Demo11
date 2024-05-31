@@ -1,5 +1,5 @@
 extends Resource
-class_name item
+class_name Item
 
 @export var Name:String
 @export var SPEED = 0

@@ -1,6 +1,6 @@
 extends Node
-
-@export var items:Array[item]
+const FILE_NAME = "res://mods/items.res"
+@export var items:Array[Item]
 @export var player:CharacterBody2D
 @export var shake:float
 @export var ammo:int = 10
@@ -8,6 +8,19 @@ extends Node
 @export var ammo_cooldown:float
 @export var clearedrooms:Array
 var applied = false
+func _ready() -> void:
+	var item_saver = item_saver.new()
+	item_saver.items = items
+	ResourceSaver.save(item_saver, "res://mods/items.res")
+	
+	_updateitem(1,0)
+func _updateitem(i:int,id:int):
+	
+	var file = ResourceLoader.load("res://mods/items.res")
+	var list:Array=file.items
+	
+	print(list)
+	items[i] = list[id]
 func _process(delta):
 	
 	ammo_timer += delta
@@ -24,20 +37,20 @@ func _process(delta):
 		
 	if is_instance_valid(player) and !applied:
 		applied = true
-		for Item in items:
-			player.SPEED += Item.SPEED
-			player.cooldown += Item.cooldown
-			if Item.pattern:
-				player.pattern = Item.pattern
-			player.bspeed += Item.bspeed
-			player.maxbounces += Item.maxbounces
-			if Item.curve:
-				player.curve = Item.curve
-			if Item.curveloop:
-				player.curveloop = Item.curveloop
-			if Item.homing:
-				player.homing = Item.homing
-			player.maxhealth += Item.maxhealth
+		for item in items:
+			player.SPEED += item.SPEED
+			player.cooldown += item.cooldown
+			if item.pattern:
+				player.pattern = item.pattern
+			player.bspeed += item.bspeed
+			player.maxbounces += item.maxbounces
+			if item.curve:
+				player.curve = item.curve
+			if item.curveloop:
+				player.curveloop = item.curveloop
+			if item.homing:
+				player.homing = item.homing
+			player.maxhealth += item.maxhealth
 
 
 
